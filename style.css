@@ -13,8 +13,8 @@ h1	{
   list-style: none;
   justify-content: center;
   align-items: center;
-  float:left;
-  margin-left: 10px;
+float:left;
+  margin:5px;
 }
 
 .header {
@@ -36,8 +36,17 @@ h1	{
 	padding-left: :10px;
 }
 
+a:hover {
+	background-color: #FFEB9D;
+	border-radius: 10em;
+}
+
+a {
+	text-decoration: none;
+}
 
 body {
+	margin: 0px;
 	background-image: url("pro3.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
