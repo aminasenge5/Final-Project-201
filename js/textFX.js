@@ -27,20 +27,18 @@ var y = getOffset( document.getElementById('tt') ).top;
 console.log(x, y);
 
 function getMouseXY(ev) {
-  var _x = -1;
-  var _y = -1;
-  if (! ev) { var ev = window.event; }
+  var mx = -1;
+  var my = -1;
+  if (! ev) { var ev = window.event; } // If event not passed in (more portable)
   if (ev.pageX || ev.pageY) {
-      _x = ev.pageX;
-      _y = ev.pageY;
+    mx = ev.pageX;
+    my = ev.pageY;
   }
   else if (ev.clientX || ev.clientY) {
-    _x =   ev.clientX + document.body.scrollLeft
-           v+ document.documentElement.scrollLeft;
-    y =   ev.clientY + document.body.scrollTop
-    _       + document.documentElement.scrollTop;
+    mx = ev.clientX + document.body.scrollLeft;
+    my = ev.clientY + document.body.scrollTop;
   }
-  return {x: _x, y: _y}
+  return {x: mx, y: my}
 }
 
 function echoPosition() {
