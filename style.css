@@ -1,18 +1,39 @@
 h1	{
 	text-align: center;
 }
+
  h2	{
-	 margin-top: 60px;
+	text-align: center;
+	padding-top: 100px;
+	margin-top: 40px;
  }
 
+ li {
+  display:inline-block;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  float:left;
+  margin-left: 10px;
+}
+
 .header {
+  position: fixed;
+  top:0px;
+  width:100%;
 	background-color: #88C5FF;
+	margin-left: 0px;
 }
 
 .navContainer {
-
 	text-align: center;
 	margin-top: 0px;
+}
+
+.anchortags {
+	text-align: justify;
+	margin-left: 10px;
+	padding-left: :10px;
 }
 
 
@@ -20,4 +41,8 @@ body {
 	background-image: url("pro3.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+}
+
+footer {
+	text-align: center;
 }
