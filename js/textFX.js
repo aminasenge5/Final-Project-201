@@ -1,5 +1,6 @@
 var pXY = document.getElementById("pXY");
 var spinEs = document.getElementsByClassName("spin");
+var toSplit = document.getElementById("toSplit");
 
 /*
 var spinR = [];
@@ -17,12 +18,17 @@ for (var ii = spinEs.length; ii--;) {
    OUT  Array of span elements that correspond to each word inside the input element
 */
 function splitSpans(el) {
-  var Espans = []; // Array containing spans after splitting el
-  spans = el.textContent;
-  console.log("spans = " + spans);
+  var Espans = []; // Array containing span elements after splitting el
+  var txt = el.textContent;
+  console.log("txt = " + txt);
+  var spans = txt.split(' ');
+  el.innertHTML = "";
 /*spans.push(e);*/
-  return Espans;
+  return spans;
 }
+
+var S = splitSpans(toSplit);
+console.log("S = "+S);
 
 /* Check to see which elements' bounding boxes contain the point x,y.
    Used for "hit detection" in the animation.
@@ -65,7 +71,6 @@ function echoPosition() {
   var pos = getMouseXY();
   H = elementsAtPos(spinEs, pos.x, pos.y);
   for (var ii=0; ii < H.length; ii++) {
-    console.log(H[ii]);
     H[ii].style.color = "red";
   }
 
