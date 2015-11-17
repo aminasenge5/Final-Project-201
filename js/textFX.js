@@ -45,6 +45,7 @@ function elementsAtPos(E, x, y) {
       console.log("x,y="+x+","+y + " L,R/T,B="+r.left+","+r.right+ "/"+r.top+","+r.bottom);
       Ehits.push(e);
     }
+    else { e.style.color = "black"; }
   }
 
   return Ehits;
