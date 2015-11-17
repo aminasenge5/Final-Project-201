@@ -10,21 +10,20 @@ for (var ii = spinEs.length; ii--;) {
   spinR.push(r);
 }
 
-function getOffset(el) {
+/*function getOffset(el) {
   var x = 0;
   var y = 0;
-  while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+  while ( el && (! isNaN(el.offsetLeft)) && (! isNaN(el.offsetTop)) ) {
       x += el.offsetLeft - el.scrollLeft;
-      y += el.offsetTop - el.scrollTop;
+      y += el.offsetTop  - el.scrollTop;
       el = el.offsetParent;
   }
   return { top: y, left: x };
 }
 
-var rr = { };
 var x = getOffset( document.getElementById('tt') ).left;
 var y = getOffset( document.getElementById('tt') ).top;
-console.log(x, y);
+console.log(x, y);*/
 
 /* Check to see which elements' bounding boxes contain the point x,y.
    Used for "hit detection" in the animation.
