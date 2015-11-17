@@ -4,8 +4,72 @@
     <meta charset="utf-8">
     <title>Application</title>
     <link rel="stylesheet" href="style.css" title="no title" charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Asap' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <h1>Application</h1>
+    <div class="navContainer">
+    	<header class="header">
+    		<h1>Get It Adventures</h1>
+    			<div id="anchortags">
+    				<ul class="sectionHeader">
+              <li><a href="index.html">Home</a></li>
+    					<li><a href="contact.html">Contact</a></li>
+    					<li><a href="about.html">About</a></li>
+    					<li><a href="application.html">Application</a></li>
+    				</ul>
+    			</div>
+    	</header>
+    </div>
+    <h2>Application</h2>
+    <form action="http://www.example.com/profile.php">
+      <div class="formChoice">
+          <form>
+            <p class="formChoice">
+              Are you interested in any of the adventures below? (You can selec more than one option by holding down contorl on a PC or command key on a Mac while selecting different options.)
+            </p>
+            <select name="adventures" size="3" multiple="multiple" class="formChoice">
+              <option value="Bungee Jump" selected="selected">Bungee Jump</option>
+              <option value="Zip Line">Zip Line</option>
+              <option value="Kayaking">Kayaking</option>
+              <option value="Hiking">Hiking</option>
+              <option value="Camping">Camping</option>
+              <option value="Mountain Climbimg">Mountain Climbing</option>
+              <option value="White Water Rafting">White Water Rafting</option>
+              <option value="Snow Shoeing">Snow Shoeing</option>
+              <option value="Ski">Ski</option>
+              <option value="Snowboard">Snowboard</option>
+              <option value="Sky Dive">Sky Dive</option>
+              <option value="Wildlife Watching">Wildlife Watching</option>
+            </select>
+          </form>
+        </div>
+        <div class="formAge">
+          <label>Age: <input type="text" name="age" /></label>
+          <br />
+          Gender:
+          <input id="female" type="radio" name="gender" value="f">
+          <label for="female">Female</label>
+          <input id="male" type="radio" name="gender" value="m">
+          <label for="male">Male</label>
+        </div>
+        <fieldset class="formContact">
+          <legend>Contact Details</legend>
+          <label>Email:<br />
+          <input type="text" name="email"></label><br />
+          <label>Mobile:<br />
+          <input type="text" name="mobile" /></label><br />
+          <label>Telephone:<br />
+          <input type="text" name="telephone" /></label>
+        </fieldset>
+        <div class="formComments">
+          <form action="http://www.example.com/comments.php">
+            <p>Do you have any questions, commments, or concerns? Please feel free to say what you have in mind.</p>
+            <textarea name="comments" rows="8" cols="40"></textarea>
+          </form>
+        </div>
+      <div style="text-align:center;">
+        <input type="submit" value="Submit" class="submit" >
+      </div>
+    </form>
   </body>
 </html>
