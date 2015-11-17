@@ -1,0 +1,15 @@
+body { font-family: Helvetica, Arial, sans-serif; }
+
+#divRectangle {
+  width: 100px;
+  height: 50px;
+  color: white;
+  background-color: blue;
+}
+
+#vidBungee {
+  width:960px;
+  height:540px;
+  max-width:1920px;
+}
+

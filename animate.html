@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8"></meta>
   <title>Get It Adventures</title>
+  <link rel="stylesheet" href="animate.css">
   <script defer src="js/textFX.js"></script>
   <script defer src="js/video.js"></script>
 <!-- <link rel="stylesheet" href="style.css> -->
@@ -11,7 +12,10 @@
 <body>
   <h1>Get It Adventures</h1>
 
-  <div id="divSpin">Text. Hello. A, B, C, 1 2 3. . ! ?</div>
+  <div id="divRectangle">Rectangle Test</div>
+
+  <div id="toSplit">Split this into spans, and fry sweet potatoes and yams, then take a photo with a cam, and ride a camel to hunt lambs. Sam I am, I will not eat green eggs and spans.</div>
+
   <div>
   <!-- Use static spans for this test, but later, use JS and .split() on
        whitespace to make each word a "spin" element. -->
@@ -36,9 +40,9 @@
 
   <p id="pXY">Mouse x,y = (-, -)</p>
 
-  <video width="512" height="300" controls>
-    <source src="vid/movie.mp4" type="video/mp4">
-    <source src="vid/movie.ogg" type="video/ogg">
+  <video id="vidBungee" controls>
+    <source src="Bungee.mov" type="video/mp4">
+    <source src="Bungee.mov" type="video/ogg">
     Your browser does not support the video tag.
   </video>
 </body>
