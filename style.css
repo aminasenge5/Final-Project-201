@@ -46,15 +46,19 @@ a {
 }
 
 body {
+
+	font-family: 'Asap', sans-serif;
 	margin: 0px;
 	background-image: url("pro3.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+	background-color: #DCDCDC;
 }
 
 footer {
 	text-align: center;
 }
+
 
 .formChoice {
 	margin:30px;
@@ -81,4 +85,35 @@ footer {
 .submit {
 	margin:30px;
 	text-align: center;
+}
+
+img {
+  max-width:  350px;
+  max-height: 350px;
+  margin: 2px;
+  vertical-align: middle;
+  border-radius: 55%
+
+}
+
+#divImgs{
+ display: block;
+ text-align: center;
+ background-color: #95E8B6;
+}
+.imgNormal {
+  border: 20px solid rgba(0,0,0, 0.0);
+}
+.imgPicked {
+  border: 20px solid red;
+}
+
+.imgLeft = { float: left; }
+
+#btnVote:hover{
+  background-color: #7982B2;
+}
+
+#btnNew:hover {
+  background-color: #7982B2;
 }

@@ -3,16 +3,17 @@
 <head>
 	<title>Get-It Adventures</title>
 	<link rel="stylesheet" href="style.css" media="screen" charset="utf-8">
+	<link href='https://fonts.googleapis.com/css?family=Asap' rel='stylesheet' type='text/css'>
 </head>
 <div class="navContainer">
 	<header class="header">
 		<h1>Get It Adventures</h1>
 			<div id="anchortags">
 				<ul class="sectionHeader">
+					<li><a href="index.html">Home</a></li>
 					<li><a href="contact.html">Contact</a></li>
 					<li><a href="about.html">About</a></li>
 					<li><a href="application.html">Application</a></li>
-					<li><a href="visitors.html">Visitor Category</a></li>
 				</ul>
 			</div>
 	</header>
@@ -21,13 +22,43 @@
 	<h2>90's truffaut brunch vice, next level celiac mustache farm-to-table narwhal aesthetic neutra kitsch cornhole venmo. Try-hard fixie marfa gentrify flexitarian ethical. Mustache artisan normcore, keytar listicle vegan hoodie. Kinfolk yuccie wolf lumbersexual asymmetrical direct trade. </h2>
 		<p> Cardigan flannel brunch deep v. Bushwick health goth squid tote bag scenester vegan. </p>
 	</br>
-		<img src="img/pro2.jpg">
+		<center><img src="img/pro2.jpg"></center>
 	</br>
-		<img src="img/pro1.jpeg">
+		<center><img src="img/pro1.jpeg"></center>
 		</br>
 	<p>Gentrify heirloom pickled shoreditch. Banjo letterpress squid, single-origin coffee keytar pour-over migas. Roof party meh chicharrones schlitz. Readymade mumblecore tacos, scenester DIY hashtag selvage. Food truck cronut swag wolf gentrify squid, hashtag mumblecore chambray master cleanse tote bag.</p>
 <footer>
 Git It &copy;
  </footer>
 </body>
+
+<p>Please highlight one of the folowing two images, then click the
+&quot;Vote&quot; button</p>
+
+
+</div>
+
+
+
+<div id="divImgs">
+  <div><img id="imgLeft" class="imgNormal">
+       <img id="imgRight" class="imgNormal">
+  </div>
+  <button id="btnVote">Vote</button>
+  <br><button id="btnNew">New pair</button>
+</div>
+
+<div id="divStats">
+  <canvas id="myChart" width="600" height="300"> </canvas>
+</div>
+
+</body>
+
+<script src="vote.js"></script>
+<script src="Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</html>
+
+<script src="adv.js"></script>
+
 </html>

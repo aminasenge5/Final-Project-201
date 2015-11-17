@@ -26,25 +26,55 @@ var x = getOffset( document.getElementById('tt') ).left;
 var y = getOffset( document.getElementById('tt') ).top;
 console.log(x, y);
 
+/* Check to see which elements' bounding boxes contain the point x,y.
+   Used for "hit detection" in the animation.
+
+   IN   E    Array of DOM elements
+        x,y  Query point's coords
+
+   OUT  List of elements that contain the query point
+*/
+function elementsAtPos(E, x, y) {
+  var Ehits = []; // List of elements that contain P
+//console.log("here. E.length = "+E.length);
+  for (var ii = 0; ii < E.length; ii++) {
+    var e = E[ii]; // Get one element
+    var r = e.getBoundingClientRect(); // Bounding rectangle of element
+
+    if ((x > r.left) && (x < r.right) && (y > r.top) && (y < r.bottom)) {
+      console.log("x,y="+x+","+y + " L,R/T,B="+r.left+","+r.right+ "/"+r.top+","+r.bottom);
+      Ehits.push(e);
+    }
+  }
+
+  return Ehits;
+}
+
 function getMouseXY(ev) {
-  var _x = -1;
-  var _y = -1;
-  if (! ev) { var ev = window.event; }
+  var mx = -1;
+  var my = -1;
+  if (! ev) { var ev = window.event; } // If event not passed in (more portable)
   if (ev.pageX || ev.pageY) {
-      _x = ev.pageX;
-      _y = ev.pageY;
+    mx = ev.pageX;
+    my = ev.pageY;
   }
   else if (ev.clientX || ev.clientY) {
-    _x =   ev.clientX + document.body.scrollLeft
-           v+ document.documentElement.scrollLeft;
-    y =   ev.clientY + document.body.scrollTop
-    _       + document.documentElement.scrollTop;
+    mx = ev.clientX + document.body.scrollLeft;
+    my = ev.clientY + document.body.scrollTop;
   }
-  return {x: _x, y: _y}
+  return {x: mx, y: my}
 }
+
+var H = [];
 
 function echoPosition() {
   var pos = getMouseXY();
+  H = elementsAtPos(spinEs, pos.x, pos.y);
+  for (var ii=0; ii < H.length; ii++) {
+    console.log(H[ii]);
+    H[ii].style.color = "red";
+  }
+
   pXY.innerHTML = "Mouse x,y=("+pos.x+", "+pos.y+")";
 }
 
