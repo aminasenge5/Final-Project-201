@@ -55,3 +55,30 @@ body {
 footer {
 	text-align: center;
 }
+
+.formChoice {
+	margin:30px;
+	text-align: center;
+}
+
+.formAge{
+	margin:30px;
+	text-align: center;
+}
+
+.formContact {
+	margin:30px;
+	text-align: center;
+	border: none;
+
+}
+
+.formComments {
+	margin:30px;
+	text-align: center;
+}
+
+.submit {
+	margin:30px;
+	text-align: center;
+}
