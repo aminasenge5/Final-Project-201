@@ -23,6 +23,7 @@ float:left;
   width:100%;
 	background-color: #88C5FF;
 	transition: top 0.2s ease-in-out;
+	z-index: 2;
 }
 
 .nav-up {
@@ -91,7 +92,19 @@ img {
   max-height: 350px;
   margin: 2px;
   vertical-align: middle;
-  border-radius: 55%
+
+}
+
+#about1 {
+	max-width: 1000px;
+	height:600px;
+	position: relative;
+	margin: auto;
+}
+
+#imgLeft, #imgRight {
+
+	border-radius: 55%;
 
 }
 
