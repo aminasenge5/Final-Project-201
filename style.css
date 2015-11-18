@@ -22,13 +22,12 @@ float:left;
   top:0px;
   width:100%;
 	background-color: #88C5FF;
-	margin-left: 0px;
+	transition: top 0.2s ease-in-out;
 	z-index: 2;
 }
 
-.navContainer {
-	text-align: center;
-	margin-top: 0px;
+.nav-up {
+    top: -40px;
 }
 
 .anchortags {
@@ -93,7 +92,7 @@ img {
   max-height: 350px;
   margin: 2px;
   vertical-align: middle;
-  
+
 }
 
 #about1 {
