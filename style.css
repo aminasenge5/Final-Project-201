@@ -45,13 +45,44 @@ a {
 }
 
 body {
+
+	font-family: 'Asap', sans-serif;
 	margin: 0px;
 	background-image: url("pro3.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+	background-color: #DCDCDC;
 }
 
 footer {
+	text-align: center;
+}
+
+
+.formChoice {
+	margin:30px;
+	text-align: center;
+}
+
+.formAge{
+	margin:30px;
+	text-align: center;
+}
+
+.formContact {
+	margin:30px;
+	text-align: center;
+	border: none;
+
+}
+
+.formComments {
+	margin:30px;
+	text-align: center;
+}
+
+.submit {
+	margin:30px;
 	text-align: center;
 }
 
