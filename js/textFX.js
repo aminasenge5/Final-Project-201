@@ -5,7 +5,8 @@ var spinEs  = document.getElementsByClassName("spin");
 var toSplit = document.getElementById("toSplit");
 var btnA    = document.getElementById("btnA");
 
-/*var spinR = [];
+/*
+var spinR = [];
 for (var ii = spinEs.length; ii--;) {
   var e = spinEs[ii]; // Element
   var r = e.getBoundingClientRect(); // Rectangle
