@@ -1,11 +1,16 @@
 var SS = document.styleSheets[0];
+var SSlenOrig    = SS.length;
+var SSlenCurrent = SSlenOrig;
 
 var pXY     = document.getElementById("pXY");
 var spinEs  = document.getElementsByClassName("spin");
 var toSplit = document.getElementById("toSplit");
-var btnA    = document.getElementById("btnA");
 
-/*var spinR = [];
+var btnFlyAway  = document.getElementById("btnFlyAway");
+var btnResetCSS = document.getElementById("btnResetCSS");
+
+/*
+var spinR = [];
 for (var ii = spinEs.length; ii--;) {
   var e = spinEs[ii]; // Element
   var r = e.getBoundingClientRect(); // Rectangle
@@ -100,7 +105,8 @@ function echoPosition() {
   for (var ii=0; ii < HS.length; ii++) {
     HS[ii].style.color = "blue";
     console.log("HS loop: ii="+ii+"  HS[ii].id="+HS[ii].id);
-addRule(SS, "#"+HS[ii].id, "font-size: 3em");
+addRule(SS, "#"+HS[ii].id, "font-size: 3em", SSlenCurrent);
+SSlenCurrent++;
   }
 }
 
@@ -113,10 +119,16 @@ function addRule(sheet, selector, rules, index) {
   }
 }
 
-//addRule(SS, "#spin0", "font-size: 3em");
-
-// Debug: Treat mouse cursor as the "crasher"
+// Debug: Treat mouse cursor as the "crasher" animated/flying image
 document.addEventListener('mousemove', function() { echoPosition(); }, true);
 
+function flyAway() {
+  console.log("flyAway() called.");
+}
 
-btnA.addEventListener('click', function() { flyAway(); }, true);
+function resetCSSrules() {
+  console.log("resetCSSrules() called.");
+}
+
+btnFlyAway.addEventListener( 'click', function() { flyAway();       }, true);
+btnResetCSS.addEventListener('click', function() { resetCSSrules(); }, true);
