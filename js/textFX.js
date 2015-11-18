@@ -1,10 +1,11 @@
+var SS = document.styleSheets[0];
+
 var pXY     = document.getElementById("pXY");
 var spinEs  = document.getElementsByClassName("spin");
 var toSplit = document.getElementById("toSplit");
+var btnA    = document.getElementById("btnA");
 
-/*
-var spinR = [];
-
+/*var spinR = [];
 for (var ii = spinEs.length; ii--;) {
   var e = spinEs[ii]; // Element
   var r = e.getBoundingClientRect(); // Rectangle
@@ -19,8 +20,8 @@ var nSpan = 0; // Number of spans to animate (at most)
    IN   E   Element to "split" text contents into individual <span> elements, one element per "word"
    OUT  Array of span elements that correspond to each word inside the input element
 */
-function splitSpans(E) {
-  var S = []; // Array containing span elements after splitting el
+function makeSpans(E) {
+  var SA = []; // Array containing span elements after splitting el
   // Later: Recurse thru sub-tree and get all innerHTML's, to allow <h1> and so
   // on be inside the E, so that all visual elements can be animated ("crashed
   // through" by the moving icon).
@@ -32,15 +33,15 @@ function splitSpans(E) {
   for (var ii=0; ii < nSpans; ii++) {
     s = document.createElement('span');
     s.class = 'spanAnim';
+    s.id = 'spin'+ii;
     s.textContent = strSpans[ii]+' ';
     E.appendChild(s);
-    S.push(s);
+    SA.push(s);
   }
-  return S;
+  return SA;
 }
 
-var S = splitSpans(toSplit);
-
+var S = makeSpans(toSplit);
 
 /* Check to see which elements' bounding boxes contain the point x,y.
    Used for "hit detection" in the animation.
@@ -79,16 +80,43 @@ function getMouseXY(ev) {
   return {x: mx, y: my}
 }
 
-var H = []; // List of elements whose bounding box contains a specific point (coords)
+var H  = []; // List of elements whose bounding box contains a specific point (coords)
+var HS = []; // List of elements whose bounding box contains a specific point (coords)
 
 function echoPosition() {
+  // Debug: Show mouse coords in paragraph
   var pos = getMouseXY();
+  pXY.textContent = "Mouse x,y=("+pos.x+", "+pos.y+")";
+
+  // Debug: Hit boxes for static test paragraph
   H = elementsAtPos(spinEs, pos.x, pos.y);
   for (var ii=0; ii < H.length; ii++) {
     H[ii].style.color = "red";
   }
 
-  pXY.innerHTML = "Mouse x,y=("+pos.x+", "+pos.y+")";
+  // Draft animation code
+  // . Debug: Highlight span on mouseover
+  HS = elementsAtPos(S, pos.x, pos.y);
+  for (var ii=0; ii < HS.length; ii++) {
+    HS[ii].style.color = "blue";
+    console.log("HS loop: ii="+ii+"  HS[ii].id="+HS[ii].id);
+addRule(SS, "#"+HS[ii].id, "font-size: 3em");
+  }
 }
 
+function addRule(sheet, selector, rules, index) {
+  if ("insertRule" in sheet) {
+    sheet.insertRule(selector + "{" + rules + "}", index);
+  }
+  else if ("addRule" in sheet) {
+    sheet.addRule(selector, rules, index);
+  }
+}
+
+//addRule(SS, "#spin0", "font-size: 3em");
+
+// Debug: Treat mouse cursor as the "crasher"
 document.addEventListener('mousemove', function() { echoPosition(); }, true);
+
+
+btnA.addEventListener('click', function() { flyAway(); }, true);
