@@ -13,3 +13,8 @@ body { font-family: Helvetica, Arial, sans-serif; }
   max-width:1920px;
 }
 
+.spin {
+  font-style: bold;
+}
+
+@keyframes spin
