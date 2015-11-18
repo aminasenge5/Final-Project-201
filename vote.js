@@ -176,3 +176,14 @@ global_init();
 
 showRandImg(imgLeftE);
 showRandImg(imgRightE);
+
+var intakeButton = document.getElementById("intake-button");
+
+var intakeDiv = document.getElementById("intake");
+
+function showIntake() {
+  intakeDiv.style.display = "block";
+}
+
+intakeButton.addEventListener("click", showIntake);
+

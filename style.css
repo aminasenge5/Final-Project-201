@@ -103,6 +103,17 @@ img {
 	margin: auto;
 }
 
+#about2 {
+	max-width: 1000px;
+	height:600px;
+	position: relative;
+	margin: auto;
+}
+
+#intake {
+	display: none;
+}
+
 #imgLeft, #imgRight {
 
 	border-radius: 55%;
