@@ -153,6 +153,7 @@ function newPair() {
   console.log("newPair()");  
   btnNew.style.visibility = "hidden";
   btnVote.style.visibility = "visible";
+  
 
 
   /*** !! Insert code HERE to hide your chart !! ***/
@@ -183,6 +184,7 @@ var intakeDiv = document.getElementById("intake");
 
 function showIntake() {
   intakeDiv.style.display = "block";
+  window.scrollTo(0, 1000);
 }
 
 intakeButton.addEventListener("click", showIntake);
