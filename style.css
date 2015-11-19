@@ -58,9 +58,11 @@ body {
 @media screen and (max-width: 530px) {
 	#about1{
 		width: 100%;
+		height: auto;
 	}
 	#about2{
 		width: 100%;
+		height: auto;
 	}
 }
 
@@ -136,14 +138,14 @@ img {
 
 #about1 {
 	max-width: 1000px;
-	height:600px;
+	height:auto;
 	position: relative;
 	margin: auto;
 }
 
 #about2 {
 	max-width: 1000px;
-	height:600px;
+	height:auto;
 	position: relative;
 	margin: auto;
 }
