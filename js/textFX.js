@@ -1,6 +1,6 @@
 var SS = document.styleSheets[0];
-var SSlenOrig    = SS.length;
-var SSlenCurrent = SSlenOrig;
+var nOrigRules = SS.cssRules.length;  // Number of rules in default stylesheet (from .css file)
+var nCurrRules = nOrigRules; // Number of rules in current stylesheet object
 
 var pXY     = document.getElementById("pXY");
 var spinEs  = document.getElementsByClassName("spin");
@@ -8,6 +8,11 @@ var toSplit = document.getElementById("toSplit");
 
 var btnFlyAway  = document.getElementById("btnFlyAway");
 var btnResetCSS = document.getElementById("btnResetCSS");
+
+var H  = []; // List of elements whose bounding box contains a specific point (coords)
+var HS = []; // List of elements whose bounding box contains a specific point (coords)
+
+var nSpan = 0; // Number of spans to animate (at most)
 
 /*
 var spinR = [];
@@ -17,8 +22,6 @@ for (var ii = spinEs.length; ii--;) {
   console.log("spinEs["+ii+"] at [top="+r.top+", bot="+r.bottom+", left="+r.left+", right="+r.right+"]  value=" + e);
   spinR.push(r);
 }*/
-
-var nSpan = 0; // Number of spans to animate (at most)
 
 /* Check to see which elements' bounding boxes contain the point x,y.
    Used for "hit detection" in the animation.
@@ -45,8 +48,6 @@ function makeSpans(E) {
   }
   return SA;
 }
-
-var S = makeSpans(toSplit);
 
 /* Check to see which elements' bounding boxes contain the point x,y.
    Used for "hit detection" in the animation.
@@ -85,8 +86,16 @@ function getMouseXY(ev) {
   return {x: mx, y: my}
 }
 
-var H  = []; // List of elements whose bounding box contains a specific point (coords)
-var HS = []; // List of elements whose bounding box contains a specific point (coords)
+function addRule(sheet, selector, rules, index) {
+  if ("insertRule" in sheet) {
+    sheet.insertRule(selector + "{" + rules + "}", index);
+    nCurrRules++;
+  }
+  else if ("addRule" in sheet) {
+    sheet.addRule(selector, rules, index);
+    nCurrRules++;
+  }
+}
 
 function echoPosition() {
   // Debug: Show mouse coords in paragraph
@@ -105,22 +114,9 @@ function echoPosition() {
   for (var ii=0; ii < HS.length; ii++) {
     HS[ii].style.color = "blue";
     console.log("HS loop: ii="+ii+"  HS[ii].id="+HS[ii].id);
-addRule(SS, "#"+HS[ii].id, "font-size: 3em", SSlenCurrent);
-SSlenCurrent++;
+    addRule(SS, "#"+HS[ii].id, "font-size: 3em", nCurrRules);
   }
 }
-
-function addRule(sheet, selector, rules, index) {
-  if ("insertRule" in sheet) {
-    sheet.insertRule(selector + "{" + rules + "}", index);
-  }
-  else if ("addRule" in sheet) {
-    sheet.addRule(selector, rules, index);
-  }
-}
-
-// Debug: Treat mouse cursor as the "crasher" animated/flying image
-document.addEventListener('mousemove', function() { echoPosition(); }, true);
 
 function flyAway() {
   console.log("flyAway() called.");
@@ -128,7 +124,16 @@ function flyAway() {
 
 function resetCSSrules() {
   console.log("resetCSSrules() called.");
+  var extraRules = nCurrRules - nOrigRules;
+  while (nCurrRules > nOrigRules) {
+    nCurrRules--;
+    SS.deleteRule(nCurrRules);
+  }
 }
 
+var S = makeSpans(toSplit);
+
+// Debug: Treat mouse cursor as the "crasher" animated/flying image
 btnFlyAway.addEventListener( 'click', function() { flyAway();       }, true);
 btnResetCSS.addEventListener('click', function() { resetCSSrules(); }, true);
+document.addEventListener('mousemove', function() { echoPosition(); }, true);
