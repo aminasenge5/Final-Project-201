@@ -72,6 +72,17 @@ body {
    }
 }
 
+@media screen and (max-width: 470px) {
+	#pro1{
+		width: 100%;
+		height: auto;
+	}
+	#pro2{
+		width: 100%;
+		height: auto;
+	}
+}
+
 
 @media screen and (max-width: 320px) {
 	body{
