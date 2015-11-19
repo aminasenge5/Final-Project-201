@@ -113,7 +113,6 @@ function echoPosition() {
   HS = elementsAtPos(S, pos.x, pos.y);
   for (var ii=0; ii < HS.length; ii++) {
     HS[ii].style.color = "blue";
-    console.log("HS loop: ii="+ii+"  HS[ii].id="+HS[ii].id);
     addRule(SS, "#"+HS[ii].id, "font-size: 3em", nCurrRules);
   }
 }
