@@ -71,6 +71,12 @@ body {
 }
 
 
+@media screen and (max-width: 320px) {
+	body{
+		width:320px;
+	}
+}
+
 
 h1	{
 	font-size: 70px;
