@@ -4,10 +4,6 @@ body { font-family: Helvetica, Arial, sans-serif; }
   position: relative;
 }
 
-/*-----------------------------*
- | jsfiddle.net/allusis/dQQcX/ |
- *-----------------------------*/
-
 .atRest { display: inline-block; }
 
 /* For animated (spinning) elements */
@@ -16,7 +12,7 @@ body { font-family: Helvetica, Arial, sans-serif; }
   position: relative;
           animate:flyLR 2s 1;
      -moz-animate:flyLR 2s 1;
-  -webkit-animation:flyLR 2s 1;
+  -webkit-animate:flyLR 2s 1;
           animation-timing-funcion: linear;
      -moz-animation-timing-funcion: linear;
   -webkit-animation-timing-funcion: linear;
@@ -40,27 +36,6 @@ body { font-family: Helvetica, Arial, sans-serif; }
           animation-timing-funcion: linear;
      -moz-animation-timing-funcion: linear;
   -webkit-animation-timing-funcion: linear;
-}
-
-#spinWord {
-  position:relative;
-  display: inline-block;
-          animation:fly 3s infinite;
-       -o-animation:fly 3s infinite; /* Firefox */
-     -moz-animation:fly 3s infinite; /* Firefox */
-  -webkit-animation:fly 3s infinite; /* Safari and Chrome */
-}
-@keyframes fly {
-  from {top:0px;   left:0px }
-  to   {top:100px; left:100px; }
-  transform: rotate(270deg);
-  writing-mode: lr-tb;
-}
-@-moz-keyframes fly /* Firefox */ {
-  from {top:0px;   left:0px }
-  to   {top:100px; left:100px; }
-  -moz-transform: rotate(270deg);
-  writing-mode: lr-tb;
 }
 
 @-webkit-keyframes flyLR /* Safari and Chrome */ {
@@ -89,6 +64,27 @@ body { font-family: Helvetica, Arial, sans-serif; }
     -webkit-transform: rotate(270deg);
     writing-mode: lr-tb;
   }
+}
+
+#spinWord {
+  position:relative;
+  display: inline-block;
+          animation:fly 3s infinite;
+       -o-animation:fly 3s infinite; /* Firefox */
+     -moz-animation:fly 3s infinite; /* Firefox */
+  -webkit-animation:fly 3s infinite; /* Safari and Chrome */
+}
+@keyframes fly {
+  from {top:0px;   left:0px }
+  to   {top:100px; left:100px; }
+  transform: rotate(270deg);
+  writing-mode: lr-tb;
+}
+@-moz-keyframes fly /* Firefox */ {
+  from {top:0px;   left:0px }
+  to   {top:100px; left:100px; }
+  -moz-transform: rotate(270deg);
+  writing-mode: lr-tb;
 }
 // -o-transform: rotate(180deg);
 

@@ -3,7 +3,6 @@ var nOrigRules = SS.cssRules.length;  // Number of rules in default stylesheet (
 var nCurrRules = nOrigRules; // Number of rules in current stylesheet object
 
 var pXY     = document.getElementById("pXY");
-var spinEs  = document.getElementsByClassName("spin");
 var toSplit = document.getElementById("toSplit");
 
 var btnFlyAway  = document.getElementById("btnFlyAway");
@@ -95,16 +94,10 @@ function randInt(min, max) {
   return min + Math.round(r*(max - min + 1));
 }
 
-function echoPosition() {
+function crash() {
   // Debug: Show mouse coords in paragraph
   var pos = getMouseXY();
   pXY.textContent = "Mouse x,y=("+pos.x+", "+pos.y+")";
-
-  // Debug: Hit boxes for static test paragraph
-  H = elementsAtPos(spinEs, pos.x, pos.y);
-  for (var ii=0; ii < H.length; ii++) {
-    H[ii].style.color = "red";
-  }
 
   // Draft animation code
   // . Debug: Highlight span on mouseover and start animating span
@@ -112,8 +105,8 @@ function echoPosition() {
   for (var ii=0; ii < HS.length; ii++) {
     var idNum = HS[ii].idNum;
 console.log("atRest[idNum="+idNum+"]="+atRest[idNum]);
-    rules = "@-webkit-keyframes mymove { from {top:0px;} to {top:200px; -webkit-transform: rotate(146deg); -moz-transform: rotate(146deg); -o-transform: rotate(146deg); writing-mode: lr-tb;} }";
-    rules = "";
+/*  rules = "@-webkit-keyframes mymove { from {top:0px;} to {top:200px; -webkit-transform: rotate(146deg); -moz-transform: rotate(146deg); -o-transform: rotate(146deg); writing-mode: lr-tb;} }";
+    rules = "";*/
     if (atRest[idNum]) { // Span is at rest
       var ri = randInt(0, 3);
       HS[ii].className = "se"+ri;
@@ -143,6 +136,16 @@ var S = makeSpans(toSplit);
 
 // Debug: Treat mouse cursor as the "crasher" animated/flying image
 btnResetCSS.addEventListener('click', function() { resetCSSrules(); }, true);
-document.addEventListener('mousemove', function() { echoPosition(); }, true);
+document.addEventListener('mousemove', function() { crash(); }, true);
 
-// Debug: Test timer code to animate head
+function foo() {
+  console.log("foo() called");
+  var r = imgFace.getBoundingClientRect();
+  console.log("img right,bottom = "+r.right + ", "+r.bottom);
+/*if (r.bottom < 400) {
+  imgFace.style.top = 3px;
+    setTimeout(foo, 1000);
+  }*/
+}
+// Timer code to animate face image
+setTimeout(foo, 1000);
