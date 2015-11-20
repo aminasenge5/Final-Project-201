@@ -10,7 +10,7 @@ function resetImgs() {
 function resetPool() { // Once all images have been shown, start over
   resetImgs();
    // Slice() forces copy by value (doesn't just create a reference)
-  fnPool  = img_yes.slice();
+  fnPool  = img_fn.slice();
   idxPool = img_idx.slice();
   if (myChartObj) { delete myChartObj; }
 }
@@ -18,17 +18,15 @@ function resetPool() { // Once all images have been shown, start over
 function global_init() {
   // Don't use "var" in this function; we need to init global vars
 
-  //img_fn = ["no1.jpg", "no2.jpg", "no3.jpg", "no4.jpg", "no5.jpg", "no6.jpg", "yes1.jpg", "yes2.jpg", "yes3.jpg", "yes4.jpg", "yes5.jpg", "yes6.jpg"];
-
-  img_no = ["no1.jpg", "no2.jpg", "no3.jpg", "no4.jpg", "no5.jpg", "no6.jpg"]
-
-  img_yes = ["yes1.jpg", "yes2.jpg", "yes3.jpg", "yes4.jpg", "yes5.jpg", "yes6.jpg"]
+  //img_fn = ["fish1.jpg", "fish2.jpg", "fish3.jpg", "fish4.jpg", "fish5.jpg", "k1.jpg", "k2.jpg", "k3.jpg", "k4.jpg", "k5.jpg", "nk1.jpg", "nk2.jpg", "nk3.jpg", "nk4.jpg", "nk5.jpg", "nk6.jpg", "nk7.jpg", "nk8.jpg", "nk9.jpg", "nk10.jpg"];
   
+img_fn = ["no1.jpg", "no2.jpg", "no3.jpg", "no4.jpg", "no5.jpg", "no6.jpg", "yes1.jpg", "yes2.jpg", "yes3.jpg", "yes4.jpg", "yes5.jpg", "yes6.jpg"];
+
   // Only 10 images here. Add at least 10 more images of your own!
 
   // To track which imgs' indices of the original array have already by shown
   img_idx = [];
-  for (var ii=0; ii < img_yes.length; ii++) { img_idx[ii] = ii; }
+  for (var ii=0; ii < img_fn.length; ii++) { img_idx[ii] = ii; }
 
   imgDir = "./img/"
 
@@ -101,8 +99,8 @@ function showChart() {
   // easily understandable charts.
 
   console.log("showChart()");
-  var fnL = img_yes[imgLeftE.idxOrig];
-  var fnR = img_yes[imgRightE.idxOrig];
+  var fnL = img_fn[imgLeftE.idxOrig];
+  var fnR = img_fn[imgRightE.idxOrig];
   var labelL = fnL.split(".")[0];
   var labelR = fnR.split(".")[0];
 
@@ -153,7 +151,6 @@ function newPair() {
   console.log("newPair()");  
   btnNew.style.visibility = "hidden";
   btnVote.style.visibility = "visible";
-  
 
 
   /*** !! Insert code HERE to hide your chart !! ***/
@@ -188,4 +185,7 @@ function showIntake() {
 }
 
 intakeButton.addEventListener("click", showIntake);
+
+
+
 
