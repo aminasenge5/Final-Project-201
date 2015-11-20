@@ -14,15 +14,6 @@ var HS = []; // Spans whose bounding boxes contain a specific pt. Spans were JS-
 var atRest = []; // Indicates spans that are "at rest" (not being animated)
 var nSpan = 0; // Max number of spans to animate
 
-/*
-var spinR = [];
-for (var ii = spinEs.length; ii--;) {
-  var e = spinEs[ii]; // Element
-  var r = e.getBoundingClientRect(); // Rectangle
-  console.log("spinEs["+ii+"] at [top="+r.top+", bot="+r.bottom+", left="+r.left+", right="+r.right+"]  value=" + e);
-  spinR.push(r);
-}*/
-
 /* Check to see which elements' bounding boxes contain the point x,y.
    Used for "hit detection" in the animation.
    IN   E   Element to "split" text contents into individual <span> elements, one element per "word"
@@ -141,6 +132,9 @@ function resetCSSrules() {
   while (nCurrRules > nOrigRules) {
     nCurrRules--;
     SS.deleteRule(nCurrRules);
+  }
+  for (var ii; ii < atRest.length; ii++) {
+    atRest[ii] = true; // Initial statue: element is at rest
   }
 }
 
