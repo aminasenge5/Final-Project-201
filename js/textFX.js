@@ -15,19 +15,17 @@ var atRest = []; // Indicator array for SA's elements "at rest" (not being anima
 
 var HS = []; // Elements of SA whose bounding boxes contain a specific pt., to be animated
 
-/* Check to see which elements' bounding boxes contain the point x,y.
-   Used for "hit detection" in the animation.
-   IN   E   Element to "split" text contents into individual <span> elements, one element per "word"
-   OUT  Array of span elements that correspond to each word inside the input element
+/* Split element E's contents into individual <span> elements ("words").
+   Output: Array of span elements corresponding to each word inside E
 */
 function makeSpans(E) {
   // Later: Recurse thru sub-tree and get all innerHTML's, to allow <h1> and so
   // on be inside the E, so that all visual elements can be animated ("crashed
   // through" by the moving icon).
-  var strSpans = E.textContent.split(' '); // Array of strings, each string is a (text) word or symbol
+  var strSpans = E.textContent.split(' '); // Array of strings, each a (text) "word"
   nSpans = strSpans.length; // Cache global var
 
-  // Replace el sub-tree with spans
+  // Replace with spans
   E.innerHTML = '';
   for (var ii=0; ii < nSpans; ii++) {
     s = document.createElement('span');
@@ -42,7 +40,7 @@ function makeSpans(E) {
   return SA;
 }
 
-/* Check to see which elements' bounding boxes contain the point x,y.
+/* Find elements whose bounding boxes contain point x, y
    Used for "hit detection" in the animation.
    IN   E    Array of DOM elements
         x,y  Query point's coords
@@ -90,6 +88,11 @@ function addRule(sheet, selector, rules, index) {
   }
 }
 
+function randInt(min, max) {
+  r = Math.random();
+  return min + Math.round(r*(max - min + 1));
+}
+
 function echoPosition() {
   // Debug: Show mouse coords in paragraph
   var pos = getMouseXY();
@@ -106,11 +109,12 @@ function echoPosition() {
   HS = elementsAtPos(S, pos.x, pos.y);
   for (var ii=0; ii < HS.length; ii++) {
     var idNum = HS[ii].idNum;
-    console.log("atRest[idNum="+idNum+"]="+atRest[idNum]);
+  //console.log("atRest[idNum="+idNum+"]="+atRest[idNum]);
     rules = "@-webkit-keyframes mymove { from {top:0px;} to {top:200px; -webkit-transform: rotate(146deg); -moz-transform: rotate(146deg); -o-transform: rotate(146deg); writing-mode: lr-tb;} }";
     rules = "";
     if (atRest[idNum]) { // Span is at rest
-      HS[ii].className = "se";
+      var ri = randInt(0, 3);
+      HS[ii].className = "se"+ri;
     //addRule(SS, "#"+HS[ii].id, rules, nCurrRules);
     //nCurrRules++;
       atRest[idNum] = false;
