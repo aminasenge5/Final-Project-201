@@ -9,6 +9,8 @@ var toSplit = document.getElementById("toSplit");
 var btnFlyAway  = document.getElementById("btnFlyAway");
 var btnResetCSS = document.getElementById("btnResetCSS");
 
+var imgFace = document.getElementById("imgFace");
+
 var SA = []; // Elements after splitting text inside div into words.
 var nSpan = 0; // Max number of spans to animate (SA's length)
 var atRest = []; // Indicator array for SA's elements "at rest" (not being animated)
@@ -23,11 +25,11 @@ function makeSpans(E) {
   // on be inside the E, so that all visual elements can be animated ("crashed
   // through" by the moving icon).
   var strSpans = E.textContent.split(' '); // Array of strings, each a (text) "word"
-  nSpans = strSpans.length; // Cache global var
+  nSpan = strSpans.length; // Cache global var
 
   // Replace with spans
   E.innerHTML = '';
-  for (var ii=0; ii < nSpans; ii++) {
+  for (var ii=0; ii < nSpan; ii++) {
     s = document.createElement('span');
     s.id = 'spin'+ii;
     s.className="atRest";
@@ -109,7 +111,7 @@ function echoPosition() {
   HS = elementsAtPos(S, pos.x, pos.y);
   for (var ii=0; ii < HS.length; ii++) {
     var idNum = HS[ii].idNum;
-  //console.log("atRest[idNum="+idNum+"]="+atRest[idNum]);
+console.log("atRest[idNum="+idNum+"]="+atRest[idNum]);
     rules = "@-webkit-keyframes mymove { from {top:0px;} to {top:200px; -webkit-transform: rotate(146deg); -moz-transform: rotate(146deg); -o-transform: rotate(146deg); writing-mode: lr-tb;} }";
     rules = "";
     if (atRest[idNum]) { // Span is at rest
@@ -143,9 +145,4 @@ var S = makeSpans(toSplit);
 btnResetCSS.addEventListener('click', function() { resetCSSrules(); }, true);
 document.addEventListener('mousemove', function() { echoPosition(); }, true);
 
-// Delete these?
-function flyAway() {
-  console.log("flyAway() called.");
-}
-btnFlyAway.addEventListener( 'click', function() { flyAway();       }, true);
-
+// Debug: Test timer code to animate head

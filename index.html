@@ -6,6 +6,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Asap' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
 	<nav>
 			<ul>
@@ -13,8 +14,10 @@
 					<li class="li-nav"><a href="about.html">About</a></li>
 					<li class="li-nav"><a href="application.html">Application</a></li>
 					<li class="li-nav"><a href="contact.html">Contact</a></li>
+					<li class="li-nav"><a href="video.html">Video</a></li>
 			</ul>
 	</nav>
+<div id="divOuter">
 	<h1>Get It Adventures</h1>
 	<p>90's truffaut brunch vice, next level celiac mustache farm-to-table narwhal aesthetic neutra kitsch cornhole venmo. Try-hard fixie marfa gentrify flexitarian ethical. Mustache artisan normcore, keytar listicle vegan hoodie. Kinfolk yuccie wolf lumbersexual asymmetrical direct trade. </p>
 		<p> Cardigan flannel brunch deep v. Bushwick health goth squid tote bag scenester vegan. </p>
@@ -25,35 +28,30 @@
 		</br>
 	<p>Gentrify heirloom pickled shoreditch. Banjo letterpress squid, single-origin coffee keytar pour-over migas. Roof party meh chicharrones schlitz. Readymade mumblecore tacos, scenester DIY hashtag selvage. Food truck cronut swag wolf gentrify squid, hashtag mumblecore chambray master cleanse tote bag.</p>
 
-
-
 <!-- <p>Please highlight one of the folowing two images, then click the -->
 <!-- &quot;Vote&quot; button</p> -->
 
 <p>To begin your Intake, select from the following images the ones you find most interesting:</p>
 
-
-</div>
-
 <center><button id="intake-button">Click to begin intake!</button></center>
-
 
 <div id="intake">
 
-<div id="divImgs">
-  <div><img id="imgLeft" class="imgNormal">
-       <img id="imgRight" class="imgNormal">
+  <div id="divImgs">
+    <div><img id="imgLeft" class="imgNormal">
+         <img id="imgRight" class="imgNormal">
+    </div>
+    <button id="btnVote">Vote</button>
+    <br><button id="btnNew">New pair</button>
   </div>
-  <button id="btnVote">Vote</button>
-  <br><button id="btnNew">New pair</button>
-</div>
 
-<div id="divStats">
-  <canvas id="myChart" width="600" height="300"> </canvas>
-</div>
+  <div id="divStats">
+    <canvas id="myChart" width="600" height="300"> </canvas>
+  </div>
 
-</div>
+</div> <!-- intake -->
 
+</div> <!-- divOuter -->
 </body>
 
 </br>
