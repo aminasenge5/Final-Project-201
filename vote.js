@@ -10,23 +10,29 @@ function resetImgs() {
 function resetPool() { // Once all images have been shown, start over
   resetImgs();
    // Slice() forces copy by value (doesn't just create a reference)
-  fnPool  = img_fn.slice();
-  idxPool = img_idx.slice();
+  fnPoolYes  = img_fn_yes.slice();
+  fnPoolNo   = img_fn_no.slice();
+
+  idxPoolYes = img_idx_yes.slice();
+  idxPoolNo  = img_idx_no.slice();
   if (myChartObj) { delete myChartObj; }
 }
 
 function global_init() {
-  // Don't use "var" in this function; we need to init global vars
+  img_fn_yes = ["yes1.jpg", "yes2.jpg", "yes3.jpg", "yes4.jpg", "yes5.jpg", "yes6.jpg"];
+  img_fn_no  = ["no1.jpg",  "no2.jpg",  "no3.jpg",  "no4.jpg",  "no5.jpg",  "no6.jpg" ];
 
-  //img_fn = ["fish1.jpg", "fish2.jpg", "fish3.jpg", "fish4.jpg", "fish5.jpg", "k1.jpg", "k2.jpg", "k3.jpg", "k4.jpg", "k5.jpg", "nk1.jpg", "nk2.jpg", "nk3.jpg", "nk4.jpg", "nk5.jpg", "nk6.jpg", "nk7.jpg", "nk8.jpg", "nk9.jpg", "nk10.jpg"];
-  
-img_fn = ["no1.jpg", "no2.jpg", "no3.jpg", "no4.jpg", "no5.jpg", "no6.jpg", "yes1.jpg", "yes2.jpg", "yes3.jpg", "yes4.jpg", "yes5.jpg", "yes6.jpg"];
-
-  // Only 10 images here. Add at least 10 more images of your own!
+  // Constants
+  YES = true;  // Selects from the "yes" image set
+  NO  = false; // Selects from the "no" image set
 
   // To track which imgs' indices of the original array have already by shown
-  img_idx = [];
-  for (var ii=0; ii < img_fn.length; ii++) { img_idx[ii] = ii; }
+  img_idx_yes = [];
+  img_idx_no  = [];
+  for (var ii=0; ii < img_fn_yes.length; ii++) {
+    img_idx_yes[ii] = ii;
+    img_idx_no[ ii] = ii;
+  }
 
   imgDir = "./img/"
 
@@ -57,23 +63,33 @@ function getRandIntOnRange (a, b) {
   return t;
 }
 
-function showRandImg(imgE) {
-  var maxIdx = fnPool.length - 1;
+function showRandImg(imgE, showYes) {
+  // Assumes both original filename arrays are the same length
+  var maxIdx = 0;
+  if (showYes) { maxIdx = fnPoolYes.length - 1; }
+  else         { maxIdx = fnPoolNo.length  - 1; }
   if (maxIdx < 1) {
     resetPool();
-    maxIdx = fnPool.length - 1;
+    if (showYes) { maxIdx = fnPoolYes.length - 1; }
+    else         { maxIdx = fnPoolNo.length  - 1; }
   }
 
   var idx = getRandIntOnRange(0, maxIdx);
-  imgE.src = imgDir + fnPool[idx];
+  if (showYes) { imgE.src = imgDir + fnPoolYes[idx]; }
+  else         { imgE.src = imgDir + fnPoolNo[idx]; }
    // Extend object to have an property that holds idx w.r.t. original fn array
-  imgE.idxOrig = idxPool[idx];
+  if (showYes) { imgE.idxOrig = idxPoolYes[idx]; }
+  else         { imgE.idxOrig = idxPoolNo[idx];  }
 
   // Rmove chosen img filename. ( Note: this is faster than using splice(). )
-  fnPool[idx] = fnPool[maxIdx];
-  fnPool.pop();
-  idxPool[idx]= idxPool[maxIdx];
-  idxPool.pop();
+  if (showYes) {
+    fnPoolYes[idx]  = fnPoolYes[maxIdx];  fnPoolYes.pop();
+    idxPoolYes[idx] = idxPoolYes[maxIdx]; idxPoolYes.pop();
+  }
+  else         {
+    fnPoolNo[idx]  = fnPoolNo[maxIdx];  fnPoolNo.pop();
+    idxPoolNo[idx] = idxPoolNo[maxIdx]; idxPoolNo.pop();
+  }
 }
 
 function selectImg() {
@@ -99,8 +115,8 @@ function showChart() {
   // easily understandable charts.
 
   console.log("showChart()");
-  var fnL = img_fn[imgLeftE.idxOrig];
-  var fnR = img_fn[imgRightE.idxOrig];
+  var fnL = img_fn_no[imgLeftE.idxOrig];
+  var fnR = img_fn_yes[imgRightE.idxOrig];
   var labelL = fnL.split(".")[0];
   var labelR = fnR.split(".")[0];
 
@@ -159,21 +175,20 @@ function newPair() {
   // graphic that is "cached" in your <canvas>
   if (myChartObj) { delete myChartObj; }
 
-
-  if (fnPool.length < 2) {
+  if (fnPoolYes.length < 2) {
     console.log("Not enough images left. Resetting pool");  
     resetPool();
   }
 
   voteAllowed = true;
-  showRandImg(imgLeftE);
-  showRandImg(imgRightE);
+  showRandImg(imgLeftE,  NO);
+  showRandImg(imgRightE, YES);
 }
 
 global_init();
 
-showRandImg(imgLeftE);
-showRandImg(imgRightE);
+showRandImg(imgLeftE,  NO);
+showRandImg(imgRightE, YES);
 
 var intakeButton = document.getElementById("intake-button");
 
@@ -185,7 +200,3 @@ function showIntake() {
 }
 
 intakeButton.addEventListener("click", showIntake);
-
-
-
-
