@@ -15,7 +15,7 @@ body { font-family: Helvetica, Arial, sans-serif; }
       font-style: oblique;
       -webkit-animation: mymove 5s 1;
       -moz-animate:mymove 5s 1;
-} /* Spinning element class */
+} /* For animated (spinning) elements */
 
 #spinWord {
   position:relative;
