@@ -37,7 +37,9 @@ nav ul li a {
 		background-color: rgb(200,200,250);
 }
 
-
+li {
+	text-align: center;
+}
 
 body {
 	padding-top: 110px;
@@ -103,6 +105,11 @@ h1	{
 	font-size: 50px;
 	text-align: center;
  }
+
+h3 {
+	font-size:40px;
+	text-align: center;
+}
 
 p	{
 	margin: 30px;
@@ -173,7 +180,7 @@ img {
 		font-size: 25px;
 		background:#A1D490;
 		padding: 20px;
-		
+
 		text-align: center;
 		border-radius: 6px;
 		margin: 20px auto 0 auto;
