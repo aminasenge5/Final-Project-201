@@ -9,10 +9,11 @@ var toSplit = document.getElementById("toSplit");
 var btnFlyAway  = document.getElementById("btnFlyAway");
 var btnResetCSS = document.getElementById("btnResetCSS");
 
-var H  = []; // Elements whose bounding boxes contain a specific pt. From static HTML.
-var HS = []; // Spans whose bounding boxes contain a specific pt. Spans were JS-gen'd
-var atRest = []; // Indicates spans that are "at rest" (not being animated)
-var nSpan = 0; // Max number of spans to animate
+var SA = []; // Elements after splitting text inside div into words.
+var nSpan = 0; // Max number of spans to animate (SA's length)
+var atRest = []; // Indicator array for SA's elements "at rest" (not being animated)
+
+var HS = []; // Elements of SA whose bounding boxes contain a specific pt., to be animated
 
 /* Check to see which elements' bounding boxes contain the point x,y.
    Used for "hit detection" in the animation.
@@ -20,7 +21,6 @@ var nSpan = 0; // Max number of spans to animate
    OUT  Array of span elements that correspond to each word inside the input element
 */
 function makeSpans(E) {
-  var SA = []; // Array containing span elements after splitting el
   // Later: Recurse thru sub-tree and get all innerHTML's, to allow <h1> and so
   // on be inside the E, so that all visual elements can be animated ("crashed
   // through" by the moving icon).
@@ -32,7 +32,7 @@ function makeSpans(E) {
   for (var ii=0; ii < nSpans; ii++) {
     s = document.createElement('span');
     s.id = 'spin'+ii;
-    s.className="ib";
+    s.className="atRest";
     s.innerHTML = strSpans[ii]+'&nbsp;';
     s.idNum = ii; // Custom property - just the number portion of the CSS id
     E.appendChild(s);
@@ -102,29 +102,21 @@ function echoPosition() {
   }
 
   // Draft animation code
-  // . Debug: Highlight span on mouseover
-  // . Issue: Multiple rules for the same element are added. Fix by checking
+  // . Debug: Highlight span on mouseover and start animating span
   HS = elementsAtPos(S, pos.x, pos.y);
   for (var ii=0; ii < HS.length; ii++) {
     var idNum = HS[ii].idNum;
     console.log("atRest[idNum="+idNum+"]="+atRest[idNum]);
-    rule = "";
+    rules = "@-webkit-keyframes mymove { from {top:0px;} to {top:200px; -webkit-transform: rotate(146deg); -moz-transform: rotate(146deg); -o-transform: rotate(146deg); writing-mode: lr-tb;} }";
+    rules = "";
     if (atRest[idNum]) { // Span is at rest
       HS[ii].className = "se";
-    /*addRule(SS, "#"+HS[ii].id, "-webkit-animation: mymove 5s 1; -moz-animate:mymove 5s 1;",
-      nCurrRules);*/
+    //addRule(SS, "#"+HS[ii].id, rules, nCurrRules);
+    //nCurrRules++;
       atRest[idNum] = false;
     }
   }
   var SA = []; // Indicator array: spans being animated
-}
-
-function flyAway() {
-  console.log("flyAway() called.");
-  var ii = 0;
-  while (! atRest[ii] && ii < len) {
-    ii++;
-  }
 }
 
 function resetCSSrules() {
@@ -136,11 +128,20 @@ function resetCSSrules() {
   for (var ii; ii < atRest.length; ii++) {
     atRest[ii] = true; // Initial statue: element is at rest
   }
+  for (var ii; ii < atRest.length; ii++) {
+    HS[ii].className = "atRest";
+  }
 }
 
 var S = makeSpans(toSplit);
 
 // Debug: Treat mouse cursor as the "crasher" animated/flying image
-btnFlyAway.addEventListener( 'click', function() { flyAway();       }, true);
 btnResetCSS.addEventListener('click', function() { resetCSSrules(); }, true);
 document.addEventListener('mousemove', function() { echoPosition(); }, true);
+
+// Delete these?
+function flyAway() {
+  console.log("flyAway() called.");
+}
+btnFlyAway.addEventListener( 'click', function() { flyAway();       }, true);
+

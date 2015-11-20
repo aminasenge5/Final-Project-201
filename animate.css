@@ -8,14 +8,16 @@ body { font-family: Helvetica, Arial, sans-serif; }
  | jsfiddle.net/allusis/dQQcX/ |
  *-----------------------------*/
 
-.ib { display: inline-block; }
+.atRest { display: inline-block; }
+
+/* For animated (spinning) elements */
 .se { display: inline-block;
       position: relative;
       font-size: 3em;
       font-style: oblique;
       -webkit-animation: mymove 5s 1;
       -moz-animate:mymove 5s 1;
-} /* For animated (spinning) elements */
+}
 
 #spinWord {
   position:relative;
@@ -34,12 +36,12 @@ body { font-family: Helvetica, Arial, sans-serif; }
 @-webkit-keyframes mymove /* Safari and Chrome */ {
   from {top:0px;}
   to {top:200px;
-  -webkit-transform: rotate(146deg);
-  -moz-transform: rotate(146deg);
-  -o-transform: rotate(146deg);
-  writing-mode: lr-tb;}
+      -webkit-transform: rotate(146deg);
+      -moz-transform: rotate(146deg);
+      -o-transform: rotate(146deg);
+      writing-mode: lr-tb;
+     }
 }
-
 
 #divRectangle {
   width: 100px;
