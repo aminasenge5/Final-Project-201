@@ -1,5 +1,46 @@
 body { font-family: Helvetica, Arial, sans-serif; }
 
+#toSplit {
+  position: relative;
+}
+
+/*-----------------------------*
+ | jsfiddle.net/allusis/dQQcX/ |
+ *-----------------------------*/
+
+.ib { display: inline-block; }
+.se { display: inline-block;
+      position: relative;
+      font-size: 3em;
+      font-style: oblique;
+      -webkit-animation: mymove 5s 1;
+      -moz-animate:mymove 5s 1;
+} /* Spinning element class */
+
+#spinWord {
+  position:relative;
+  animation:mymove 5s infinite;
+  -moz-animation:mymove 5s infinite; /* Firefox */
+  -webkit-animation:mymove 5s infinite; /* Safari and Chrome */
+}
+@keyframes mymove {
+  from {top:0px;}
+  to {top:200px;}
+}
+@-moz-keyframes mymove /* Firefox */ {
+  from {top:0px;}
+  to {top:200px;}
+}
+@-webkit-keyframes mymove /* Safari and Chrome */ {
+  from {top:0px;}
+  to {top:200px;
+  -webkit-transform: rotate(146deg);
+  -moz-transform: rotate(146deg);
+  -o-transform: rotate(146deg);
+  writing-mode: lr-tb;}
+}
+
+
 #divRectangle {
   width: 100px;
   height: 50px;
@@ -13,8 +54,52 @@ body { font-family: Helvetica, Arial, sans-serif; }
   max-width:1920px;
 }
 
-.spin {
-  font-style: bold;
+#spinWord.fly {
+  animation-name: fly;
+  animation-duration: 3s;
+  animation-timing-funcion: linear;
+  -webkit-animation-name: fly;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-funcion: linear;
+
+  animation-iteration-count: 10;
+/*animation-direction: normal;  Default */
+  animation-delay: 0.5s;
+  animation-play-state: running;
+  animation-fill-mode: both;
 }
 
-@keyframes spin1
+/*
+#spinWord {
+  color: green;
+  font-style: oblique;
+} */
+
+@keyframes none {
+}
+
+@keyframes fly {
+   0% {
+      bottom: 0;
+      left: 340px;
+      background: #f00;
+   }
+
+   33% {
+      bottom: 340px;
+      left: 340px;
+      background: #ffd630;
+   }
+
+   66% {
+      bottom: 340px;
+      left: 40px;
+      background: #ffd630;
+   }
+
+   100% {
+      bottom: 0;
+      left: 40px;
+      background: #f00;
+   }
+}

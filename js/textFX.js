@@ -9,10 +9,10 @@ var toSplit = document.getElementById("toSplit");
 var btnFlyAway  = document.getElementById("btnFlyAway");
 var btnResetCSS = document.getElementById("btnResetCSS");
 
-var H  = []; // List of elements whose bounding box contains a specific point (coords)
-var HS = []; // List of elements whose bounding box contains a specific point (coords)
-
-var nSpan = 0; // Number of spans to animate (at most)
+var H  = []; // Elements whose bounding boxes contain a specific pt. From static HTML.
+var HS = []; // Spans whose bounding boxes contain a specific pt. Spans were JS-gen'd
+var atRest = []; // Indicates spans that are "at rest" (not being animated)
+var nSpan = 0; // Max number of spans to animate
 
 /*
 var spinR = [];
@@ -40,11 +40,13 @@ function makeSpans(E) {
   E.innerHTML = '';
   for (var ii=0; ii < nSpans; ii++) {
     s = document.createElement('span');
-    s.class = 'spanAnim';
     s.id = 'spin'+ii;
-    s.textContent = strSpans[ii]+' ';
+    s.className="ib";
+    s.innerHTML = strSpans[ii]+'&nbsp;';
+    s.idNum = ii; // Custom property - just the number portion of the CSS id
     E.appendChild(s);
     SA.push(s);
+    atRest.push(true); // Initial statue: element is at rest
   }
   return SA;
 }
@@ -110,19 +112,31 @@ function echoPosition() {
 
   // Draft animation code
   // . Debug: Highlight span on mouseover
+  // . Issue: Multiple rules for the same element are added. Fix by checking
   HS = elementsAtPos(S, pos.x, pos.y);
   for (var ii=0; ii < HS.length; ii++) {
-    HS[ii].style.color = "blue";
-    addRule(SS, "#"+HS[ii].id, "font-size: 3em", nCurrRules);
+    var idNum = HS[ii].idNum;
+    console.log("atRest[idNum="+idNum+"]="+atRest[idNum]);
+    rule = "";
+    if (atRest[idNum]) { // Span is at rest
+      HS[ii].className = "se";
+    /*addRule(SS, "#"+HS[ii].id, "-webkit-animation: mymove 5s 1; -moz-animate:mymove 5s 1;",
+      nCurrRules);*/
+      atRest[idNum] = false;
+    }
   }
+  var SA = []; // Indicator array: spans being animated
 }
 
 function flyAway() {
   console.log("flyAway() called.");
+  var ii = 0;
+  while (! atRest[ii] && ii < len) {
+    ii++;
+  }
 }
 
 function resetCSSrules() {
-  console.log("resetCSSrules() called.");
   var extraRules = nCurrRules - nOrigRules;
   while (nCurrRules > nOrigRules) {
     nCurrRules--;
