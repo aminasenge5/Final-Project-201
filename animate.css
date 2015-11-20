@@ -1,7 +1,19 @@
 body { font-family: Helvetica, Arial, sans-serif; }
 
-#toSplit {
+#divImg { position: relative; }
+#imgFace {
   position: relative;
+  top: 0;
+}
+#toSplit {
+  position: static;
+  width: 80%;
+  font-size: 1.5em;
+}
+
+#vidBungee {
+  max-height:720px;
+  width:auto;
 }
 
 .atRest { display: inline-block; }
@@ -10,9 +22,9 @@ body { font-family: Helvetica, Arial, sans-serif; }
 .se0 {
   display: inline-block;
   position: relative;
-          animate:flyLR 2s 1;
-     -moz-animate:flyLR 2s 1;
-  -webkit-animate:flyLR 2s 1;
+          animate:flyLR 6s 1;
+     -moz-animate:flyLR 6s 1;
+  -webkit-animate:flyLR 6s 1;
           animation-timing-funcion: linear;
      -moz-animation-timing-funcion: linear;
   -webkit-animation-timing-funcion: linear;
@@ -20,9 +32,9 @@ body { font-family: Helvetica, Arial, sans-serif; }
 .se1 {
   display: inline-block;
   position: relative;
-          animate:flyLL 2s 1;
-     -moz-animate:flyLL 2s 1;
-  -webkit-animation:flyLL 2s 1;
+          animate:flyLL 6s 1;
+     -moz-animate:flyLL 6s 1;
+  -webkit-animation:flyLL 6s 1;
           animation-timing-funcion: linear;
      -moz-animation-timing-funcion: linear;
   -webkit-animation-timing-funcion: linear;
@@ -30,9 +42,9 @@ body { font-family: Helvetica, Arial, sans-serif; }
 .se2 {
   display: inline-block;
   position: relative;
-          animate:flyUR 2s 1;
-     -moz-animate:flyUR 2s 1;
-  -webkit-animation:flyUR 2s 1;
+          animate:flyUR 6s 1;
+     -moz-animate:flyUR 6s 1;
+  -webkit-animation:flyUR 6s 1;
           animation-timing-funcion: linear;
      -moz-animation-timing-funcion: linear;
   -webkit-animation-timing-funcion: linear;
@@ -41,8 +53,8 @@ body { font-family: Helvetica, Arial, sans-serif; }
 @-webkit-keyframes flyLR /* Safari and Chrome */ {
   from {top:0px; left:0px }
   to {
-    top:100px;
-    left:100px;
+    top:400px;
+    left:400px;
     -webkit-transform: rotate(270deg);
     writing-mode: lr-tb;
   }
@@ -50,8 +62,8 @@ body { font-family: Helvetica, Arial, sans-serif; }
 @-webkit-keyframes flyLL /* Safari and Chrome */ {
   from {top:0px; left:0px }
   to {
-    top:100px;
-    right:100px;
+    top:400px;
+    right:400px;
     -webkit-transform: rotate(270deg);
     writing-mode: lr-tb;
   }
@@ -59,8 +71,8 @@ body { font-family: Helvetica, Arial, sans-serif; }
 @-webkit-keyframes flyUR /* Safari and Chrome */ {
   from {top:0px; left:0px }
   to {
-    bottom:100px;
-    left:100px;
+    bottom:400px;
+    left:400px;
     -webkit-transform: rotate(270deg);
     writing-mode: lr-tb;
   }
@@ -88,18 +100,6 @@ body { font-family: Helvetica, Arial, sans-serif; }
 }
 // -o-transform: rotate(180deg);
 
-#divRectangle {
-  width: 100px;
-  height: 50px;
-  color: white;
-  background-color: blue;
-}
-
-#vidBungee {
-  max-width:1920px;
-  height:auto;
-}
-
 #spinWord.fly {
   animation-name: fly;
   animation-duration: 3s;
@@ -114,12 +114,6 @@ body { font-family: Helvetica, Arial, sans-serif; }
   animation-play-state: running;
   animation-fill-mode: both;
 }
-
-/*
-#spinWord {
-  color: green;
-  font-style: oblique;
-} */
 
 @keyframes none {
 }
