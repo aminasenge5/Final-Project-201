@@ -4,9 +4,9 @@ var nCurrRules = nOrigRules; // Number of rules in current stylesheet object
 
 var pXY     = document.getElementById("pXY");
 var toSplit = document.getElementById("toSplit");
+var vidBungee = document.getElementById("vidBungee");
 
 var btnFlyAway  = document.getElementById("btnFlyAway");
-var btnResetCSS = document.getElementById("btnResetCSS");
 
 var imgFace = document.getElementById("imgFace");
 
@@ -62,6 +62,7 @@ function elementsAtPos(E, x, y) {
   return Ehits;
 }
 
+/*
 // Test input. May keep as an additional effect, but for, simulates "Gliding Andrew" which is to be coded
 function getMouseXY(ev) {
   var mx = -1;
@@ -88,25 +89,23 @@ function addRule(sheet, selector, rules, index) {
     nCurrRules++;
   }
 }
+*/
 
 function randInt(min, max) {
   r = Math.random();
   return min + Math.round(r*(max - min + 1));
 }
 
-function crash() {
+function crash(x, y) {
   // Debug: Show mouse coords in paragraph
-  var pos = getMouseXY();
-  pXY.textContent = "Mouse x,y=("+pos.x+", "+pos.y+")";
+/*var pos = getMouseXY();
+  pXY.textContent = "Mouse x,y=("+pos.x+", "+pos.y+")";*/
 
   // Draft animation code
   // . Debug: Highlight span on mouseover and start animating span
-  HS = elementsAtPos(S, pos.x, pos.y);
+  HS = elementsAtPos(S, x, y);
   for (var ii=0; ii < HS.length; ii++) {
     var idNum = HS[ii].idNum;
-console.log("atRest[idNum="+idNum+"]="+atRest[idNum]);
-/*  rules = "@-webkit-keyframes mymove { from {top:0px;} to {top:200px; -webkit-transform: rotate(146deg); -moz-transform: rotate(146deg); -o-transform: rotate(146deg); writing-mode: lr-tb;} }";
-    rules = "";*/
     if (atRest[idNum]) { // Span is at rest
       var ri = randInt(0, 3);
       HS[ii].className = "se"+ri;
@@ -118,6 +117,7 @@ console.log("atRest[idNum="+idNum+"]="+atRest[idNum]);
   var SA = []; // Indicator array: spans being animated
 }
 
+/*
 function resetCSSrules() {
   var extraRules = nCurrRules - nOrigRules;
   while (nCurrRules > nOrigRules) {
@@ -131,21 +131,41 @@ function resetCSSrules() {
     HS[ii].className = "atRest";
   }
 }
+*/
 
 var S = makeSpans(toSplit);
 
 // Debug: Treat mouse cursor as the "crasher" animated/flying image
-btnResetCSS.addEventListener('click', function() { resetCSSrules(); }, true);
-document.addEventListener('mousemove', function() { crash(); }, true);
+//btnResetCSS.addEventListener('click', function() { resetCSSrules(); }, true);
+//document.addEventListener('mousemove', function() { crash(); }, true);
 
-function foo() {
-  console.log("foo() called");
+var xImg = 0;
+var yImg = 0;
+var dx = 2.6;
+var dy = 3;
+var yLimit = 750; // Hard-coded y-loc of face in initial video frame. Given more time, code this to be determined from element positions.
+var anim_start_delay = 2000; // Wait __ seconds before animating
+var anim_frame_time = 40;    // Time gap between "crasher" position updates
+
+function moveFace() {
   var r = imgFace.getBoundingClientRect();
-  console.log("img right,bottom = "+r.right + ", "+r.bottom);
-/*if (r.bottom < 400) {
-  imgFace.style.top = 3px;
-    setTimeout(foo, 1000);
-  }*/
+  if (r.bottom < yLimit) {
+    xImg += dx;
+    yImg += dy;
+    imgFace.style.top  = yImg+"px";
+    imgFace.style.left = xImg+"px";
+    imgFace.style.opacity = 1 - (r.bottom / yLimit);
+    setTimeout(moveFace, anim_frame_time);
+    var ir = imgFace.getBoundingClientRect();
+    crash(ir.right, ir.top);
+    crash(ir.right, ir.bottom);
+    crash(ir.left,  ir.bottom);
+  } else {
+      vidBungee.play();
+   //console.log("img right,bottom = "+r.right + ", "+r.bottom);
+  }
 }
+
 // Timer code to animate face image
-setTimeout(foo, 1000);
+setTimeout(moveFace, anim_start_delay);
+
