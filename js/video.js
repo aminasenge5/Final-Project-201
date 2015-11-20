@@ -1,7 +1,3 @@
-var SS = document.styleSheets[0];
-var nOrigRules = SS.cssRules.length;  // Number of rules in default stylesheet (from .css file)
-var nCurrRules = nOrigRules; // Number of rules in current stylesheet object
-
 var pXY = document.getElementById("pXY");
 var toSplit = document.getElementById("toSplit");
 var vidBungee = document.getElementById("vidBungee");
@@ -62,82 +58,26 @@ function elementsAtPos(E, x, y) {
   return Ehits;
 }
 
-/*
-// Test input. May keep as an additional effect, but for, simulates "Gliding Andrew" which is to be coded
-function getMouseXY(ev) {
-  var mx = -1;
-  var my = -1;
-  if (! ev) { var ev = window.event; } // If event not passed in (more portable)
-  if (ev.pageX || ev.pageY) {
-    mx = ev.pageX;
-    my = ev.pageY;
-  }
-  else if (ev.clientX || ev.clientY) {
-    mx = ev.clientX + document.body.scrollLeft;
-    my = ev.clientY + document.body.scrollTop;
-  }
-  return {x: mx, y: my}
-}
-
-function addRule(sheet, selector, rules, index) {
-  if ("insertRule" in sheet) {
-    sheet.insertRule(selector + "{" + rules + "}", index);
-    nCurrRules++;
-  }
-  else if ("addRule" in sheet) {
-    sheet.addRule(selector, rules, index);
-    nCurrRules++;
-  }
-}
-*/
-
 function randInt(min, max) {
   r = Math.random();
   return min + Math.round(r*(max - min + 1));
 }
 
+// Text animation code
 function crash(x, y) {
-  // Debug: Show mouse coords in paragraph
-/*var pos = getMouseXY();
-  pXY.textContent = "Mouse x,y=("+pos.x+", "+pos.y+")";*/
-
-  // Draft animation code
-  // . Debug: Highlight span on mouseover and start animating span
   HS = elementsAtPos(S, x, y);
   for (var ii=0; ii < HS.length; ii++) {
     var idNum = HS[ii].idNum;
     if (atRest[idNum]) { // Span is at rest
       var ri = randInt(0, 3);
       HS[ii].className = "se"+ri;
-    //addRule(SS, "#"+HS[ii].id, rules, nCurrRules);
-    //nCurrRules++;
       atRest[idNum] = false;
     }
   }
   var SA = []; // Indicator array: spans being animated
 }
 
-/*
-function resetCSSrules() {
-  var extraRules = nCurrRules - nOrigRules;
-  while (nCurrRules > nOrigRules) {
-    nCurrRules--;
-    SS.deleteRule(nCurrRules);
-  }
-  for (var ii; ii < atRest.length; ii++) {
-    atRest[ii] = true; // Initial statue: element is at rest
-  }
-  for (var ii; ii < atRest.length; ii++) {
-    HS[ii].className = "atRest";
-  }
-}
-*/
-
 var S = makeSpans(toSplit);
-
-// Debug: Treat mouse cursor as the "crasher" animated/flying image
-//btnResetCSS.addEventListener('click', function() { resetCSSrules(); }, true);
-//document.addEventListener('mousemove', function() { crash(); }, true);
 
 var xImg = 0;
 var yImg = 0;
