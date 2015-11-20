@@ -2,11 +2,11 @@ var SS = document.styleSheets[0];
 var nOrigRules = SS.cssRules.length;  // Number of rules in default stylesheet (from .css file)
 var nCurrRules = nOrigRules; // Number of rules in current stylesheet object
 
-var pXY     = document.getElementById("pXY");
+var pXY = document.getElementById("pXY");
 var toSplit = document.getElementById("toSplit");
 var vidBungee = document.getElementById("vidBungee");
 
-var btnFlyAway  = document.getElementById("btnFlyAway");
+var btnFlyAway = document.getElementById("btnFlyAway");
 
 var imgFace = document.getElementById("imgFace");
 
